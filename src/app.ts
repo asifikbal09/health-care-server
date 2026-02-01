@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req: Request, res: Response) => {
     res.send({
-        message: "Server is running..",
+        message: "The Health Care Server is running..",
         environment: config.node_env,
         uptime: process.uptime().toFixed(2) + " sec",
         timeStamp: new Date().toISOString()
