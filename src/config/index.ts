@@ -13,8 +13,10 @@ export default {
         api_secret: process.env.CLOUDINARY_API_SECRET,
     },
     jwt: {
-        secret: process.env.JWT_SECRET,
-        expires_in: process.env.JWT_EXPIRES_IN,
+        accessSecret: process.env.JWT_ACCESS_SECRET,
+        accessExpiresIn: process.env.JWT_ACCESS_EXPIRES_IN,
+        refreshSecret: process.env.JWT_REFRESH_SECRET,
+        refreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN,
     },
     salt_rounds: process.env.SALT_ROUNDS,
 

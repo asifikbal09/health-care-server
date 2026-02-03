@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { UserController } from "./user.controller";
-import { fileUploader } from "../../shared/fileUploader";
+import { fileUploader } from "../../helper/fileUploader";
 import validateRequest from "../../middlewares/validateRequest";
 import { UserValidation } from "./user.validation";
 
