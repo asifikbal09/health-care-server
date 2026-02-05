@@ -34,8 +34,8 @@ model Doctor {
     name                String
     email               String   @unique
     profilePhoto        String?
-    contactNumber       String
-    address             String
+    contactNumber       String?
+    address             String?
     registrationNumber  String
     experience          Int      @default(0)
     gender              Gender
