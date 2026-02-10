@@ -81,8 +81,18 @@ const createDoctorIntoDB = async (req: Request)=>{
     
 }
 
+const getAllUserFromDB = async({page,limit}:{page:number,limit:number})=>{
+    const skip = (page - 1) * limit;
+    const result = await prisma.user.findMany({
+        skip,
+        take: limit
+    })
+    return result;
+}
+
 export const UserService = {
     createPatientIntoDB,
     createAdminIntoDB,
-    createDoctorIntoDB
+    createDoctorIntoDB,
+    getAllUserFromDB
 }
