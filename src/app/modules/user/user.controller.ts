@@ -1,6 +1,7 @@
 import pick from "../../helper/pick";
 import catchAsync from "../../shared/catchAsync";
 import sendResponse from "../../shared/sendResponse";
+import { userFilterableFields } from "./user.constant";
 import { UserService } from "./user.service";
 
 const createPatient = catchAsync(async (req, res) => {
@@ -40,7 +41,7 @@ const createDoctor = catchAsync(async (req, res) => {
 
 const getAllUser = catchAsync(async (req, res) => {
     const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']);
-    const filters = pick(req.query,["searchTerm","role","email","status"]);
+    const filters = pick(req.query,userFilterableFields);
 
     const result = await UserService.getAllUserFromDB(filters, options);
 

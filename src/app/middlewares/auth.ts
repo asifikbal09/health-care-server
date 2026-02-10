@@ -6,7 +6,7 @@ import { JwtPayload } from "jsonwebtoken";
 
 const auth = (...roles: string[])=>{return async(req:Request & { user?: JwtPayload }, res:Response, next:NextFunction)=>{
     try{
-        const token = req.cookies.get("accessToken")
+        const token = req.cookies.accessToken
 
         if(!token){
             throw new Error("You are not authorized")
