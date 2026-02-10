@@ -1,3 +1,4 @@
+import pick from "../../helper/pick";
 import catchAsync from "../../shared/catchAsync";
 import sendResponse from "../../shared/sendResponse";
 import { UserService } from "./user.service";
@@ -38,21 +39,17 @@ const createDoctor = catchAsync(async (req, res) => {
 });
 
 const getAllUser = catchAsync(async (req, res) => {
-    const { page = 1, limit = 10,searchTerm = "",sortBy,sortOrder} = req.query;
+    const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']);
+    const filters = pick(req.query,["searchTerm","role","email","status"]);
 
-    const result = await UserService.getAllUserFromDB({
-        page: Number(page),
-        limit: Number(limit),
-        searchTerm: searchTerm as string,
-        sortBy: sortBy as string,
-        sortOrder: sortOrder as string
-    });
+    const result = await UserService.getAllUserFromDB(filters, options);
 
     sendResponse(res,{
         statusCode: 200,
         success: true,
         message: 'Users retrieved successfully',
-        data: result
+        meta:result.meta,
+        data: result.data
     })
 })
 
