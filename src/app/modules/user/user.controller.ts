@@ -38,11 +38,14 @@ const createDoctor = catchAsync(async (req, res) => {
 });
 
 const getAllUser = catchAsync(async (req, res) => {
-    const { page = 1, limit = 10 } = req.query;
+    const { page = 1, limit = 10,searchTerm = "",sortBy,sortOrder} = req.query;
 
     const result = await UserService.getAllUserFromDB({
         page: Number(page),
-        limit: Number(limit)
+        limit: Number(limit),
+        searchTerm: searchTerm as string,
+        sortBy: sortBy as string,
+        sortOrder: sortOrder as string
     });
 
     sendResponse(res,{
