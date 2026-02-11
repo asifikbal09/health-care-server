@@ -1,3 +1,4 @@
+import { Request } from "express";
 import pick from "../../helper/pick";
 import catchAsync from "../../shared/catchAsync";
 import sendResponse from "../../shared/sendResponse";
@@ -14,16 +15,16 @@ const scheduleInsertData = catchAsync(async (req, res) => {
   });
 });
 
-const getScheduleData = catchAsync(async (req, res) => {
+const getScheduleData = catchAsync(async (req:Request&{user?:any}, res) => {
     const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']);
     const filters = pick(req.query,["startDateTime","endDateTime"]);
 
-  const result = await ScheduleService.getScheduleFromDB(filters, options);
+  const result = await ScheduleService.getScheduleFromDB(req.user, filters, options);
 
     sendResponse(res, {
       statusCode: 200,
-      success: true,
-      message: "Schedule fetched successfully",
+        success: true,
+        message: "Schedule fetched successfully",
       meta: result.meta,
       data: result.data,
     });
