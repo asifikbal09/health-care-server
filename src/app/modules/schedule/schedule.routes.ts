@@ -6,4 +6,6 @@ const router = Router();
 
 router.post("/", ScheduleController.scheduleInsertData)
 
+router.get("/", ScheduleController.getScheduleData)
+
 export const scheduleRoutes = router;
